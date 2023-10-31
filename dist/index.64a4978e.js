@@ -35454,7 +35454,7 @@ const lavaEffect = {
 exports.default = lavaEffect;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"1tqZA","three":"ktPTu","../assets/shaders/lava.frag":"bgnDR","../assets/shaders/lava.vert":"2sCl2"}],"bgnDR":[function(require,module,exports) {
-module.exports = "#define GLSLIFY 1\n    varying vec2 vUv;\n    varying vec3 vColor;\n\n    void main( void ) {\n      gl_FragColor = vec4(1.0, 1.0 , 0.0, 1.);\n    }";
+module.exports = "#define GLSLIFY 1\nuniform float time;\nuniform float progress;\nuniform sampler2D texture1;\nuniform vec4 resolution;\n    varying vec2 vUv;\n    varying vec3 vColor;\n\n    void main( void ) {\n      gl_FragColor = vec4(1.0, 1.0 , 0.0, 1.);\n    }";
 
 },{}],"2sCl2":[function(require,module,exports) {
 module.exports = "#define GLSLIFY 1\nuniform float time;\nvarying vec2 vUv;\nvarying vec3 vPosition;\nvarying vec3 vColor;\nvarying vec2 pixels;\nfloat PI = 3.14159265358979323846;\n  \nvoid main() {\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}";
