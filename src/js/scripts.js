@@ -31,9 +31,9 @@ const orbit = new OrbitControls(camera, renderer.domElement);
 camera.position.set(0, 0, 1);
 orbit.update();
 
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 
-const onlineShaderMaterial = new THREE.ShaderMaterial(onlineEffect)
+const onlineShaderMaterial = new THREE.ShaderMaterial(lavaEffect)
 const planeGeometry = new THREE.PlaneGeometry(2, 1, 300, 300)
 const planeMesh = new THREE.Mesh(planeGeometry, onlineShaderMaterial)
 scene.add(planeMesh)

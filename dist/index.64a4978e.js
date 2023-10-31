@@ -585,6 +585,8 @@ var _onlineEffect = require("./onlineEffect");
 var _onlineEffectDefault = parcelHelpers.interopDefault(_onlineEffect);
 var _onlineEffect2 = require("./onlineEffect2");
 var _onlineEffect2Default = parcelHelpers.interopDefault(_onlineEffect2);
+var _lavaEffect = require("./lavaEffect");
+var _lavaEffectDefault = parcelHelpers.interopDefault(_lavaEffect);
 var _datGui = require("dat.gui");
 // const newFileUrl = new URL('../assets/Alpaca.gltf', import.meta.url)
 const renderer = new _three.WebGLRenderer({
@@ -598,8 +600,8 @@ renderer.setClearColor(0xA3A3A3);
 const orbit = new (0, _orbitControlsJs.OrbitControls)(camera, renderer.domElement);
 camera.position.set(0, 0, 1);
 orbit.update();
-const gui = new _datGui.GUI();
-const onlineShaderMaterial = new _three.ShaderMaterial((0, _onlineEffectDefault.default));
+// const gui = new dat.GUI();
+const onlineShaderMaterial = new _three.ShaderMaterial((0, _lavaEffectDefault.default));
 const planeGeometry = new _three.PlaneGeometry(2, 1, 300, 300);
 const planeMesh = new _three.Mesh(planeGeometry, onlineShaderMaterial);
 scene.add(planeMesh);
@@ -614,7 +616,7 @@ window.addEventListener("resize", function() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls.js":"7mqRv","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF","./customEffect":"cCGgk","./onlineEffect":"ftZHn","./onlineEffect2":"1UbZi","dat.gui":"k3xQk","@parcel/transformer-js/src/esmodule-helpers.js":"1tqZA"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls.js":"7mqRv","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF","./customEffect":"cCGgk","./onlineEffect":"ftZHn","./onlineEffect2":"1UbZi","dat.gui":"k3xQk","@parcel/transformer-js/src/esmodule-helpers.js":"1tqZA","./lavaEffect":"dxVYy"}],"ktPTu":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2021 Three.js Authors
@@ -35426,6 +35428,37 @@ var index = {
 };
 exports.default = index;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"1tqZA"}]},["jxZVK","goJYj"], "goJYj", "parcelRequire7930")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1tqZA"}],"dxVYy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _three = require("three");
+var _lavaFrag = require("../assets/shaders/lava.frag");
+var _lavaFragDefault = parcelHelpers.interopDefault(_lavaFrag);
+var _lavaVert = require("../assets/shaders/lava.vert");
+var _lavaVertDefault = parcelHelpers.interopDefault(_lavaVert);
+const lavaEffect = {
+    uniforms: {
+        time: {
+            value: 0.0
+        },
+        mouse: {
+            value: new _three.Vector2()
+        },
+        resolution: {
+            value: new _three.Vector2(window.innerWidth, window.innerHeight)
+        }
+    },
+    vertexShader: (0, _lavaVertDefault.default),
+    fragmentShader: (0, _lavaFragDefault.default)
+};
+exports.default = lavaEffect;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1tqZA","three":"ktPTu","../assets/shaders/lava.frag":"bgnDR","../assets/shaders/lava.vert":"2sCl2"}],"bgnDR":[function(require,module,exports) {
+module.exports = "#define GLSLIFY 1\n    varying vec2 vUv;\n    varying vec3 vColor;\n\n    void main( void ) {\n      gl_FragColor = vec4(1.0, 1.0 , 0.0, 1.);\n    }";
+
+},{}],"2sCl2":[function(require,module,exports) {
+module.exports = "#define GLSLIFY 1\nuniform float time;\nvarying vec2 vUv;\nvarying vec3 vPosition;\nvarying vec3 vColor;\nvarying vec2 pixels;\nfloat PI = 3.14159265358979323846;\n  \nvoid main() {\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}";
+
+},{}]},["jxZVK","goJYj"], "goJYj", "parcelRequire7930")
 
 //# sourceMappingURL=index.64a4978e.js.map
