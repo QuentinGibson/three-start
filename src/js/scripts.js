@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import customEffect from './customEffect';
 import onlineEffect from './onlineEffect';
 import onlineEffect2 from './onlineEffect2';
+import lavaEffect from './lavaEffect'
 import * as dat from 'dat.gui';
 
 // const newFileUrl = new URL('../assets/Alpaca.gltf', import.meta.url)
